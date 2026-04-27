@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from tensorflow.keras.utils import np_utils
 from set_constant import sentences_append, L, K
 import numpy as np
 import random

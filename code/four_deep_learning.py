@@ -1,9 +1,9 @@
 import numpy as np
-from keras.datasets import imdb
-from keras.preprocessing import sequence
-from keras.models import Sequential
-from keras import layers
-from keras.optimizers import RMSprop
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing import sequence
+from tensorflow.keras.models import Sequential
+from tensorflow.keras import layers
+from tensorflow.keras.optimizers import RMSprop
 import matplotlib.pyplot as plt
 
 from set_constant import train_path,test_path
