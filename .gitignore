@@ -1,0 +1,32 @@
+# ============================
+# MalDozer Project .gitignore
+# ============================
+
+# --- Dataset (file APK rất lớn, KHÔNG commit vào Git) ---
+data/apks/
+
+# --- Output trung gian (tự động tạo bởi pipeline, không cần lưu) ---
+data/apis/
+data/identifiers/
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# --- IDE ---
+.vscode/
+.idea/
+
+# --- OS ---
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# --- Jupyter Notebook checkpoints ---
+.ipynb_checkpoints/
+
+# --- Logs ---
+21.txt
