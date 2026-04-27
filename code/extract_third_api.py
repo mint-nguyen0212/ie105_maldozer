@@ -4,13 +4,13 @@ import os
 import pickle
 def main():
     '''
-        官方类列表
+        Official class list
     '''
     AuthorityApi = []
 #     confoundapi=['La/','Lc/','Lb/', 'Lc/', 'Ld/', 'Le/', 'Lf/', 'Lg/', 'Lh/', 'Li/', 'Lj/', 'Lk/', 'Ll/', 'Lm/', 'Ln/', 'Lo/', 'Lp/', 'Lq/', 'Lr/', 'Ls/', 'Lt/', 'Lu/', 'Lv/', 'Lw/', 'Lx/', 'Ly/', 'Lz/', '[Lb/', '[Lc/', '[Ld/', '[Le/', '[Lf/', '[Lg/', '[Lh/', '[Li/', '[Lj/', '[Lk/', '[Ll/', '[Lm/', '[Ln/', '[Lo/', '[Lp/', '[Lq/', '[Lr/', '[Ls/', '[Lt/', 
 # '[Lu/', '[Lv/', '[Lw/', '[Lx/', '[Ly/', '[Lz/','Lorg/a/','Lnet/a/','[Lcom/a/','Lcom/a/','Lio/a/']
     ThirdApi = {}
-    fp = open(useful_api_class,'r')  # 读取官方class
+    fp = open(useful_api_class,'r')  # Read official classes
     apilist = fp.readlines()
     for line in apilist:
         line = line.strip()
@@ -18,7 +18,7 @@ def main():
     fp.close()
 
     '''
-        获得api交集
+        Get API intersection
     '''
     for i in range(TYPE):
         files = os.listdir(apis_path+'/'+TYPE_list[i])

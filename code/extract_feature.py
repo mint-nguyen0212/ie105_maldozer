@@ -3,7 +3,7 @@ from androguard.misc import AnalyzeAPK
 
 def JudgeFileExist(FilePath):
     '''
-        给定文件路径,判断是否存在该文件
+        Given a file path, check whether the file exists
     '''
     if os.path.exists(FilePath)==True:
         return True
@@ -12,30 +12,30 @@ def JudgeFileExist(FilePath):
 
 def ListFile(FilePath,extensions):
     '''
-    给定文件夹的路径和要提取的文件扩展名,返回一个文件列表
+    Given a directory path and a file extension to filter, return a list of files
     '''
     Files = []
     filenames = os.listdir(FilePath)
     for file in filenames:
-        Absolutepath = os.path.abspath(os.path.join(FilePath,file))  # 文件的绝对路径
-        if os.path.splitext(file)[1]==extensions:  # os.path.splitext分离文件名和扩展名
+        Absolutepath = os.path.abspath(os.path.join(FilePath,file))  # Absolute path of the file
+        if os.path.splitext(file)[1]==extensions:  # os.path.splitext separates filename and extension
             Files.append(Absolutepath)
     return Files
 
 
 def extract_feature(ApkDirectoryPaths):
     '''
-        将给定的恶意软件目录的apk文件和良性软件的apk文件的feature提取出来
+        Extract features from APK files in the given malware and benign software directories
     '''
 
     ApkFileList = []
     for FilePath in ApkDirectoryPaths.keys():
-        #将没有后缀名的和后缀名为apk的文件添加到路径中
+        # Add files with no extension and files with .apk extension to the list
         ApkFileList.extend(ListFile(FilePath,""))
         ApkFileList.extend(ListFile(FilePath,".apk"))
 
     for ApkFile in ApkFileList:
-        # 将提取的apk文件的特征放入后缀名为.feature的文件中
+        # Save the extracted APK features into a file with .feature extension
         path = os.path.join(ApkDirectoryPaths[os.path.split(ApkFile)[0]],os.path.split(ApkFile)[1])
 
         if JudgeFileExist(path+'.feature'):

@@ -17,7 +17,7 @@ def get_onetype(path, model, type_tag=0):
 		count += 1
 	return x_,y_,len(names)
 
-#用于获得path文件下的所有apk的特征矩阵，以及其分类
+# Get the feature matrices of all APKs under the given path, along with their classifications
 def get_apks_and_types (path,TYPE,TYPE_list,type_map,model):
 	all_x = []
 	all_y = []

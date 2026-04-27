@@ -16,7 +16,7 @@ import random
 
 def deep_learning(TYPE,TYPE_list,type_map,word2vec_model):
 	
-	# 训练集,测试集
+	# Training set, test set
 	x_train,y_train,train_apk_count = get_apks_and_types(train_path,TYPE,TYPE_list,type_map,word2vec_model)
 	x_test,y_test,test_apk_count = get_apks_and_types(test_path,TYPE,TYPE_list,type_map,word2vec_model)
 	all_apk_count = train_apk_count + test_apk_count
@@ -54,21 +54,21 @@ def deep_learning(TYPE,TYPE_list,type_map,word2vec_model):
 	#print('x_train shape:', x_train.shape)
 	#print('x_test shape:', x_test.shape)
 
-	# 神经网络
+	# Neural network
 	model = Sequential()
-	# 卷积
+	# Convolution
 	model.add(layers.Conv2D(filters=filter_count, kernel_size=kernel_size_, activation='relu', input_shape=(L , K, 1)))
 	model.summary()
-	#池化
+	# Pooling
 	model.add(layers.MaxPooling2D(maxpooling_size))
 	model.add(layers.Flatten())
 	model.summary()
-	# 第一个全连接
+	# First fully connected layer
 	model.add(layers.Dense(units=first_neuron_count, activation='relu'))
 	model.summary()
-	# 正则化
+	# Regularization (Dropout)
 	model.add(layers.Dropout(dropout))
-	# 第二个全连接
+	# Second fully connected layer
 	model.add(layers.Dense(units=TYPE, activation='softmax'))
 	model.summary()
 
@@ -95,7 +95,7 @@ def deep_learning(TYPE,TYPE_list,type_map,word2vec_model):
 		epochs=epochs_,verbose=2)
 	model.save(save_model_path)
 
-	# 根据结果画图
+	# Plot results
 	acc = history.history['acc']
 	val_acc = history.history['val_acc']
 	loss = history.history['loss']
@@ -115,7 +115,7 @@ def deep_learning(TYPE,TYPE_list,type_map,word2vec_model):
 	plt.title('Training and validation loss')
 	plt.legend()
 	
-	# 测试集
+	# Test set evaluation
 	#test_loss, test_acc = model.evaluate(x_test, y_test)
 	test_loss, test_acc = model.evaluate_generator(my_generator(x_test, y_test, [[0, test_count]], batch_size), steps=int(test_count / batch_size))
 	print('Testing and accuracy:', test_acc)
@@ -136,9 +136,9 @@ if __name__ == "__main__":
 	word2vec_model = Word2Vec.load(word2vec_model_path)
 	deep_learning(TYPE,TYPE_list,type_map,word2vec_model)
 
-# x_train, x_test是 train_apk_count*(L*K) 的(二维)numpy矩阵
-# 注意此处要把每个L * K的矩阵展平了成一个(L * K)的向量
-# y_train, y_test是 test_apk_count*1 的(一维)numpy矩阵
+# x_train, x_test are (2D) numpy matrices of shape train_apk_count*(L*K)
+# Note: each L*K matrix should be flattened into a (L*K) vector
+# y_train, y_test are (1D) numpy matrices of shape test_apk_count*1
 # def get_onetype(path,model,type=0):
 #     sentences=[]
 #     names=sentences_append(sentences,path)
@@ -151,12 +151,12 @@ if __name__ == "__main__":
 #	 x_.extend(x)
 #     return x_,y_,len(names)
 # 
-# #用于获得path文件下的所有apk的特征矩阵，以及其分类
+# # Get the feature matrices of all APKs under the given path, along with their classifications
 # def get_apks_and_types (path,TYPE,TYPE_list,type_map,model):
 #     apk_count=0
 #     X=[]
 #     Y=[]
-#     # 把所有训练集的矩阵读到这个二维张量中
+#     # Read all training set matrices into this 2D tensor
 #     for i in range(0,TYPE):
 #	 x,y,z=get_onetype(path+'/'+TYPE_list[i],model,type_map[TYPE_list[i]])
 #	 x=np.array(x)

@@ -1,6 +1,6 @@
 import pickle
 from set_constant import mapping_to_identifier_path,useful_api_class,classes
-def set_dict():##非通用
+def set_dict():## Not general-purpose
 	dict_file=open(mapping_to_identifier_path,'wb')
 	useful_api=open(useful_api_class,'w')
 	dic={}

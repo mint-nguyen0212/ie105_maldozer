@@ -18,7 +18,7 @@ def plot_confusion_matrix(cm,
                           target_names,
 
                           title='Confusion matrix',
-cmap=plt.cm.Greens,#这个地方设置混淆矩阵的颜色主题，这个主题看着就干净~
+cmap=plt.cm.Greens,# Set the color theme for the confusion matrix
 
                           normalize=True):
 
@@ -96,19 +96,19 @@ cmap=plt.cm.Greens,#这个地方设置混淆矩阵的颜色主题，这个主题
 
     plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass))
 
-    #这里这个savefig是保存图片，如果想把图存在什么地方就改一下下面的路径，然后dpi设一下分辨率即可。
+    # Use savefig to save the figure; modify the path below to save to a different location; set dpi for resolution.
 
 	#plt.savefig('/content/drive/My Drive/Colab Notebooks/confusionmatrix32.png',dpi=350)
 
     plt.show()
 
-# 显示混淆矩阵
+# Display confusion matrix
 
 def plot_confuse(model, x_val, y_val):
 
     predictions = model.predict_classes(x_val,batch_size=batch)
 
-    truelabel = y_val.argmax(axis=-1)   # 将one-hot转化为label
+    truelabel = y_val.argmax(axis=-1)   # Convert one-hot to label
 
     conf_mat = confusion_matrix(y_true=truelabel, y_pred=predictions)
 

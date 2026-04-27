@@ -15,14 +15,14 @@ def fun(id,val_split,apis_path,TYPE_list,dic,files,train_path,test_path):
         if lens==0:
             continue
         g = []
-        for k in f:#限制sentence长为L
+        for k in f:# Limit sentence length to L
             m = k[:-1]
-            if m in dic.keys():#当长度小于L时后面补0；当api不在dict关键字里面，map到0
+            if m in dic.keys():# Pad with 0 when length < L; map to 0 if API is not in the dictionary keys
                 identifier=str(dic[m])+'\n'
             else:
                 identifier='0\n'
             g.append(identifier)
-        if j < train_number:#分为数据集和训练集
+        if j < train_number:# Split into training set and test set
             with open(train_path+'/'+TYPE_list+'/'+files[j],'w') as x:
                 x.writelines(g)
         else:
@@ -66,16 +66,16 @@ def mapping_to_identifier(TYPE,TYPE_list,dic):
             if lens==0:
                 continue
             g=[]
-            for k in f:#限制sentence长为L
+            for k in f:# Limit sentence length to L
                 m = k[:-1]
                 identifier=""
-                if m in dic.keys():#当长度小于L时后面补0；当api不在dict关键字里面，map到0
+                if m in dic.keys():# Pad with 0 when length < L; map to 0 if API is not in the dictionary keys
                     identifier=str(dic[m])+'\n'
                 else:
                     identifier='0\n'
                 g.append(identifier)
                 
-            if j < train_number:#分为数据集和训练集
+            if j < train_number:# Split into training set and test set
                 with open(train_path+'/'+TYPE_list[i]+'/'+files[j],'w') as x:
                     x.writelines(g)
             else:

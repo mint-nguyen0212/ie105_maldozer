@@ -14,13 +14,13 @@ def mapping_to_identifier(TYPE,TYPE_list,dic):
 			f=Get_file_line(apis_path+'/'+TYPE_list[i]+'/'+files[j])
 			lens=len(f)
 			g=[]
-			for k in range(L):#限制sentence长为L
-				if (k<lens) and (f[k][:-1] in dic.keys()):#当长度小于L时后面补0；当api不在dict关键字里面，map到0
+			for k in range(L):# Limit sentence length to L
+				if (k<lens) and (f[k][:-1] in dic.keys()):# Pad with 0 when length < L; map to 0 if API not in dict keys
 					m=f[k][:-1]
 					g.append(str(dic[m])+'\n')
 				else:
 					g.append('0\n')
-			# if j < train_number:#分为数据集和训练集
+			# if j < train_number:# Split into training and test set
 			# 	with open(train_path+'/'+TYPE_list[i]+'/'+files[j],'w') as x:
 			# 		x.writelines(g)
 			# else:

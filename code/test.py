@@ -17,7 +17,7 @@ import random
 
 def deep_learning(TYPE,TYPE_list,type_map,word2vec_model):
 	
-	# 训练集,测试集
+	# Training set, test set
 	# x_train,y_train,train_apk_count = get_apks_and_types(train_path,TYPE,TYPE_list,type_map,word2vec_model)
 	x_test,y_test,test_apk_count = get_apks_and_types(test_path,TYPE,TYPE_list,type_map,word2vec_model)
 	confuse(save_model_path, x_test, y_test, TYPE_list)
